@@ -42,7 +42,7 @@ pipeline {
                 
                 stage("dockerfile scan") {
                     steps {
-                        sh '/venv/bin/checkov -f dockerfile --skip-check CKV_DOCKER_2 --skip-check CKV_DOCKER_3 --framework dockerfile'
+                        sh '/venv/bin/checkov -f web_app/dockerfile --skip-check CKV_DOCKER_2 --skip-check CKV_DOCKER_3 --framework dockerfile'
                     }
                 }
             }
