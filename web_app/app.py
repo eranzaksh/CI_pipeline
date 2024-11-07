@@ -1,13 +1,9 @@
 import os
 import time
 import logging
-<<<<<<< HEAD
-from flask import Flask, render_template, request, redirect, url_for
-=======
 
 import requests
 from flask import Flask, render_template, request, redirect, url_for, jsonify
->>>>>>> c899afa (commit message)
 from prometheus_client import Histogram, make_wsgi_app, Counter
 from werkzeug.middleware.dispatcher import DispatcherMiddleware
 from modules import backend
@@ -69,20 +65,11 @@ def display(location):
     # start_time = time.time()
     LOCATION_REQUEST_COUNT.labels(request.method, '/display', 200, location).inc()
     logging.info(f"Display data for location: {location}")
-<<<<<<< HEAD
-    if request.method == "POST":
-        location = location.split(',')[0].lower()
-        return redirect(url_for("save_data", location=location))
-    # weather_json_file is a list of days and location
-=======
->>>>>>> c899afa (commit message)
     weather_json_file = backend.read_json_file(location)
     backend.create_graph(weather_json_file[0])
     graph_day = url_for('static', filename='graph_day.png')
     graph_night = url_for('static', filename='graph_night.png')
     logging.debug(f"Generated graphs for location: {location}")
-<<<<<<< HEAD
-=======
     if request.method == "POST":
         action = request.form.get("action")
 
@@ -109,7 +96,6 @@ def display(location):
         return redirect(url_for("save_data", location=location))
     # weather_json_file is a list of days and location
     # weather_json_file = backend.read_json_file(location)
->>>>>>> c899afa (commit message)
     return render_template('display.html', weather=weather_json_file[0],
                            location=weather_json_file[1], graph_day=graph_day, graph_night=graph_night)
 
@@ -133,8 +119,4 @@ def home():
 
 
 if __name__ == "__main__":
-<<<<<<< HEAD
-    app.run()
-=======
     app.run(host="0.0.0.0", port=5001)
->>>>>>> c899afa (commit message)

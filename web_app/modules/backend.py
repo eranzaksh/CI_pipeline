@@ -12,11 +12,7 @@ from boto3.session import Session
 
 load_dotenv()
 cache = os.getenv("cache")
-<<<<<<< HEAD
-history_dir = os.getenv("history_dir")
-=======
 history_dir = "static/history"
->>>>>>> c899afa (commit message)
 API_KEY = os.getenv("API_KEY")
 AWS_ACCESS_KEY = os.getenv("AWS_ACCESS_KEY")
 AWS_SECRET_KEY = os.getenv("AWS_SECRET_KEY")
