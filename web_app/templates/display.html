@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Display Weather</title>
+</head>
+<body>
+
+<h2>This is the weather forcast for: {{ location }}</h2>
+<img src={{ graph_day }} > <img src={{ graph_night }} >
+    <form action="#" method="POST">
+        <button type="submit">Save Data</button>
+    </form>
+<<<<<<< HEAD
+=======
+<!-- Form to send email -->
+<!-- <form id="emailForm">
+    <label for="email">Enter your email to receive the forecast:</label>
+    <input type="email" id="email" name="receiver_email" required>
+
+    <button type="button" id="sendEmailButton">Send Email</button>
+</form> -->
+<form method="POST" action="{{ url_for('display', location=location) }}">
+    <input type="email" name="receiver_email" placeholder="Enter receiver's email" required>
+    <input type="hidden" name="location" value="{{ location }}">
+    <input type="hidden" name="weather" value="{{ weather }}">
+    <button type="submit" name="action" value="send-email">Send Email</button>
+</form>
+<!--<script>-->
+<!--    document.getElementById('sendEmailButton').onclick = function() {-->
+<!--        const receiverEmail = document.getElementById('email').value;-->
+<!--        const weatherData = {{ weather | tojson }}; // Assuming this is in JSON format-->
+<!--        const location = "{{ location }}";-->
+<!--        console.log(weatherData);-->
+<!--        const requestBody = {-->
+<!--            subject: location,-->
+<!--            body: JSON.stringify(weatherData), // Convert the weather data to a JSON string-->
+<!--            receiver_email: receiverEmail-->
+<!--        };-->
+
+<!--        fetch('http://send-email-api/send-email', {-->
+<!--            method: 'POST',-->
+<!--            headers: {-->
+<!--                'Content-Type': 'application/json'-->
+<!--            },-->
+<!--            body: JSON.stringify(requestBody) // Send JSON data-->
+<!--        })-->
+<!--        .then(response => response.json())-->
+<!--        .then(data => {-->
+<!--            console.log(data); // Handle success response-->
+<!--        })-->
+<!--        .catch(error => {-->
+<!--            console.error('Error:', error); // Handle error-->
+<!--        });-->
+<!--    };-->
+<!--</script>-->
+>>>>>>> c899afa (commit message)
+    {% for item in weather.values() %}
+        <ul>date: <strong>{{ item['date'] }}</strong>
+
+                <li>Morning (7:00) Temperatures: {{ item['morning_temp'] }}</li>
+                <li>Morning (7:00) Humidity levels: {{ item['morning_humidity'] }}</li>
+                <li>Evening (19:00) Temperatures: {{ item['evening_temp'] }}</li>
+                <li>Evening (19:00) Humidity levels: {{ item['evening_humidity'] }}</li>
+        </ul>
+    {% endfor %}
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+*
+docker-compose.yaml
+!*/
+!*.c
+!*.sh
+!*.py
+!*.h
+!*.yaml
+!.gitignore
+!*/
+!*.yaml
+!requirements.txt
+!*.tf
+!Jenkinsfile
+!*.html
