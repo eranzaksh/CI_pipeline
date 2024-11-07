@@ -73,7 +73,6 @@ pipeline {
                         script: "curl -s http://169.254.169.254/latest/meta-data/local-ipv4",
                         returnStdout: true
                     ).trim()
-                    echo "Private IP of the instance: ${privateIP}"
 
                     // Check the connectivity by hitting the exposed endpoint
                     def status_code = sh(script: "curl -o /dev/null -s -w \"%{http_code}\" http://${privateIP}:5001", returnStdout: true).trim()
