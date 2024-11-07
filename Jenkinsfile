@@ -53,7 +53,7 @@ pipeline {
                     // because of "detected dubious ownership"
                     sh "git config --global --add safe.directory '*'"
                     GIT_COMMIT = sh (script: "git log -n 1 --pretty=format:'%H'", returnStdout: true)
-                    sh "docker build -t eranzaksh/infinity:$BUILD_NUMBER-$GIT_COMMIT -t eranzaksh/infinity:latest ."
+                    sh "docker build -t eranzaksh/infinity:$BUILD_NUMBER-$GIT_COMMIT -t eranzaksh/infinity:latest web_app/."
 
                 }
             }
