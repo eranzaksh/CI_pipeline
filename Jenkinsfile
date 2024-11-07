@@ -64,7 +64,7 @@ pipeline {
                script{
                    containerId = sh(script: 'docker run -d -p 5001:5001 eranzaksh/infinity:latest ', returnStdout: true).trim()
                    sh 'sleep 3'
-                   def status_code = sh(script: 'curl -o /dev/null -s -w "%{http_code}" http://10.0.159.199:5001', returnStdout: true)
+                   def status_code = sh(script: 'curl -o /dev/null -s -w "%{http_code}" http://localhost:5001', returnStdout: true)
                    if (status_code != '200') {
                        error "Connectivity test failed"
                    }
