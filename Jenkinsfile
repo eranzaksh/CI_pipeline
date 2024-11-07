@@ -81,6 +81,16 @@ pipeline {
                 }
             }
         }
+        stage('Trigger project-cd Job') {
+            steps {
+                script {
+
+                    // Trigger the second job and pass the parameter
+                    build job: 'project-cd', 
+                          parameters: [string(name: 'GIT_COMMIT', value: GIT_COMMIT)]
+                }
+            }
+        }
     }     
     post {
         always {
