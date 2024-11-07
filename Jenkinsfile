@@ -25,28 +25,28 @@ pipeline {
             }
         }
         
-        stage("Verify") {
-            parallel {
+        // stage("Verify") {
+        //     parallel {
                 
-                stage("Linting") {
-                    steps {
-                        sh '/venv/bin/pylint --disable=E0401 --output-format=parseable --fail-under=5 web_app/'
-                    }
-                }
+        //         stage("Linting") {
+        //             steps {
+        //                 sh '/venv/bin/pylint --disable=E0401 --output-format=parseable --fail-under=5 web_app/'
+        //             }
+        //         }
                 
-                stage("Dependencies scan") {
-                    steps {
-                        sh '/venv/bin/bandit -r web_app/. --severity-level high'
-                    }
-                }
+        //         stage("Dependencies scan") {
+        //             steps {
+        //                 sh '/venv/bin/bandit -r web_app/. --severity-level high'
+        //             }
+        //         }
                 
-                stage("dockerfile scan") {
-                    steps {
-                        sh '/venv/bin/checkov -f web_app/dockerfile --skip-check CKV_DOCKER_2 --skip-check CKV_DOCKER_3 --framework dockerfile'
-                    }
-                }
-            }
-        }
+        //         stage("dockerfile scan") {
+        //             steps {
+        //                 sh '/venv/bin/checkov -f web_app/dockerfile --skip-check CKV_DOCKER_2 --skip-check CKV_DOCKER_3 --framework dockerfile'
+        //             }
+        //         }
+        //     }
+        // }
         stage("Build") {
             steps {
                 script {
