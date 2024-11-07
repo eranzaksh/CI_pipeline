@@ -73,8 +73,7 @@ pipeline {
                         script: "curl -s http://169.254.169.254/latest/meta-data/local-ipv4",
                         returnStdout: true
                     ).trim()
-                    sh "docker stop $containerId"
-                    sh "docker rm $containerId"
+
                     // Check the connectivity by hitting the exposed endpoint
                     def status_code = sh(script: "curl -o /dev/null -s -w \"%{http_code}\" http://${privateIP}:5001", returnStdout: true).trim()
                     
@@ -84,6 +83,8 @@ pipeline {
                     } else {
                         echo "Connectivity test passed with status code 200"
                     }
+                    sh "docker stop $containerId"
+                    sh "docker rm $containerId"
                     
                }
            }
