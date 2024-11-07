@@ -105,19 +105,20 @@ pipeline {
 
                     // Trigger the second job and pass the parameter
                     build job: 'project-cd', 
-                          parameters: [string(name: 'GIT_COMMIT', value: GIT_COMMIT)]
+                          parameters: [string(name: 'GIT_COMMIT', value: "${GIT_COMMIT}")]
                 }
             }
         }
     }     
     post {
-        // always {
+        always {
         //      /* Always remove container */
         //     script { 
         //         sh "docker stop $containerId"
         //         sh "docker rm $containerId"
         //      }
-        //  }
+            cleanWs() 
+         }
         success {
           slackSend channel: 'succeeded-build', color: 'good', message: "Build successful: Job '${env.JOB_NAME}-${env.BUILD_NUMBER} ${STAGE_NAME}'"
         }
