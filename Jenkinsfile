@@ -62,12 +62,29 @@ pipeline {
        stage("Test") {
            steps {
                script{
-                   containerId = sh(script: 'docker run -d -p 5001:5001 eranzaksh/infinity:latest ', returnStdout: true).trim()
-                   sh 'sleep 3'
-                   def status_code = sh(script: 'curl -o /dev/null -s -w "%{http_code}" http://localhost:5001', returnStdout: true)
-                   if (status_code != '200') {
-                       error "Connectivity test failed"
-                   }
+                    // Run the Docker container and capture the container ID
+                    def containerId = sh(script: 'docker run -d -p 5001:5001 eranzaksh/infinity:latest', returnStdout: true).trim()
+                    
+                    // Wait for the container to start
+                    sh 'sleep 3'
+
+                    // Fetch the private IP of the EC2 instance
+                    def privateIP = sh(
+                        script: "curl -s http://169.254.169.254/latest/meta-data/local-ipv4",
+                        returnStdout: true
+                    ).trim()
+                    echo "Private IP of the instance: ${privateIP}"
+
+                    // Check the connectivity by hitting the exposed endpoint
+                    def status_code = sh(script: "curl -o /dev/null -s -w \"%{http_code}\" http://${privateIP}:5001", returnStdout: true).trim()
+                    
+                    // Validate the status code
+                    if (status_code != '200') {
+                        error "Connectivity test failed, expected 200 but got ${status_code}"
+                    } else {
+                        echo "Connectivity test passed with status code 200"
+                    }
+                    
                }
            }
        }
