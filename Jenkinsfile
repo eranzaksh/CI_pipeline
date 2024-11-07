@@ -73,7 +73,8 @@ pipeline {
                         script: "curl -s http://169.254.169.254/latest/meta-data/local-ipv4",
                         returnStdout: true
                     ).trim()
-
+                    sh "docker stop $containerId"
+                    sh "docker rm $containerId"
                     // Check the connectivity by hitting the exposed endpoint
                     def status_code = sh(script: "curl -o /dev/null -s -w \"%{http_code}\" http://${privateIP}:5001", returnStdout: true).trim()
                     
@@ -109,13 +110,13 @@ pipeline {
         }
     }     
     post {
-        always {
-             /* Always remove container */
-            script { 
-                sh "docker stop $containerId"
-                sh "docker rm $containerId"
-             }
-         }
+        // always {
+        //      /* Always remove container */
+        //     script { 
+        //         sh "docker stop $containerId"
+        //         sh "docker rm $containerId"
+        //      }
+        //  }
         success {
           slackSend channel: 'succeeded-build', color: 'good', message: "Build successful: Job '${env.JOB_NAME}-${env.BUILD_NUMBER} ${STAGE_NAME}'"
         }
