@@ -50,10 +50,10 @@ def download():
     backend.download_from_s3()
     return redirect(url_for("home"))
 
-@app.route("/history/")
-def show_history():
-    files = backend.list_history()
-    return render_template('history.html', files=files)
+#@app.route("/history/")
+#def show_history():
+#    files = backend.list_history()
+#    return render_template('history.html', files=files)
 @app.route("/save_data/<string:location>")
 def save_data(location):
     weather_json_file = backend.read_json_file(location)
@@ -107,7 +107,7 @@ def home():
     bg_color = os.getenv('BG_COLOR', '#ffffff')
     if request.method == "POST":
         location = request.form.get("location").lower()
-        backend.save_history(location)
+        #backend.save_history(location)
         if backend.check_cache(location):
             return redirect(url_for("display", location=location))
         else:

@@ -21,16 +21,16 @@ AWS_DYNAMODB_SECRET_KEY = "AWS_DYNAMODB_SECRET_KEY"
 
 
 
-def list_history():
-    files = [f for f in os.listdir(history_dir)]
-    return files
+#def list_history():
+#    files = [f for f in os.listdir(history_dir)]
+#    return files
 
 
-def save_history(location):
-    date = str(datetime.datetime.today().date())
-    history_file = {"date": date, "city": location}
-    with open(f'{history_dir}/{location}.json', 'w') as fileobj:
-        json.dump(history_file, fileobj)
+#def save_history(location):
+#    date = str(datetime.datetime.today().date())
+#    history_file = {"date": date, "city": location}
+#    with open(f'{history_dir}/{location}.json', 'w') as fileobj:
+#        json.dump(history_file, fileobj)
 
 
 
