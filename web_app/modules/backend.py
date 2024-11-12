@@ -58,6 +58,8 @@ def download_from_s3():
 
 
 def create_graph(weather):
+    if not os.path.exists(history_dir):
+        os.makedirs(history_dir)
     # showing graph of temps during the week.
     mpl.use('agg')
     days = []
