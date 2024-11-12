@@ -11,7 +11,7 @@ from flask import abort
 from boto3.session import Session
 
 load_dotenv()
-cache = os.getenv("cache")
+cache = "cache"
 history_dir = "static/history"
 API_KEY = os.getenv("API_KEY")
 AWS_ACCESS_KEY = os.getenv("AWS_ACCESS_KEY")
