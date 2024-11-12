@@ -104,7 +104,7 @@ def display(location):
 def home():
     REQUEST_COUNT.labels('GET', '/', 200).inc()
     logging.info("Home endpoint was called")
-    bg_color = os.getenv('BG_COLOR', '#ffffff')
+    bg_color = os.getenv('BG-COLOR', '#ffffff')
     if request.method == "POST":
         location = request.form.get("location").lower()
         #backend.save_history(location)
