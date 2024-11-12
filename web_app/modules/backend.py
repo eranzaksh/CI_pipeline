@@ -80,6 +80,8 @@ def create_graph(weather):
 def check_cache(location):
     # Check if folder has more then 10 files
     files = os.listdir(cache)
+    if not files:
+        return False
     files = [os.path.join(cache, x) for x in files]
     files = sorted(files, key=os.path.getmtime)
     if files:
