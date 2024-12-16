@@ -1,2 +1,1 @@
-# app_for_argocd
-web app to be deployed for devops
+# CI pipeline for a python web app
