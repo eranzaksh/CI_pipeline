@@ -145,15 +145,7 @@ Configure Jenkins agents with Docker capabilities.
 
 
 
-2. Docker Hub:
-
-Create a Docker Hub repository (eranzaksh/infinity).
-
-Add Docker Hub credentials to Jenkins.
-
-
-
-3. Slack:
+2. Slack:
 
 Configure Slack integration in Jenkins.
 
@@ -161,12 +153,9 @@ Add appropriate channel IDs for notifications.
 
 
 
-4. EC2 Metadata Access:
+3. EC2 Metadata Access:
 
 Ensure the EC2 instance running the pipeline can access its metadata.
-
-
-
 
 
 ---
@@ -187,8 +176,7 @@ Running Locally
 
 1. Clone the repository:
 
-git clone <repository_url>
-cd <repository_directory>
+git clone https://github.com/eranzaksh/CI_pipeline.git
 
 
 2. run the Jenkinsfile in a pipeline Jenkins job
